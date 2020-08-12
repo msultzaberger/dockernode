@@ -5,3 +5,12 @@ services:
 scripts:
   - docker build -t msultzaberger/node .
   - docker images msultzaberger/node
+
+before_deploy:
+  - docker login -u msultzaberger -p Chief431!
+
+deploy:
+  provider: script
+  script: docker push msultzaberger/node
+  on:
+    branch: master
